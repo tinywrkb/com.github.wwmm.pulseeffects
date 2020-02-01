@@ -29,7 +29,6 @@ cleanup:
 modules:
   - name: pulseeffects
     buildsystem: meson
-    builddir: true
     sources:
       - type: git
         url: 'https://github.com/wwmm/pulseeffects.git'
@@ -133,7 +132,6 @@ modules:
               - '/lib/pangomm-*/proc/m4'
 
       - name: gst-plugins-bad
-        builddir: true
         buildsystem: meson
         no-make-install: true
         make-args:
