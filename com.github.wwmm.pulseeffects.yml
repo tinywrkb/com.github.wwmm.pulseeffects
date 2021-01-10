@@ -13,7 +13,10 @@ finish-args:
   - --socket=wayland
   - --device=dri
     # Sound access
+  - --filesystem=xdg-run/pipewire-0:ro
+  - --filesystem=xdg-run/pipewire-0.lock:ro
   - --socket=pulseaudio
+  - --system-talk-name=org.freedesktop.RealtimeKit1
     # LADSPA Plugin PATH
   - --env=LADSPA_PATH=/app/lib/ladspa:/app/extensions/Plugins/ladspa
     # LV2 Plugin PATH
@@ -45,8 +48,7 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/wwmm/pulseeffects.git'
-        tag: v4.8.4
-        commit: 4e7532f72ea59b9001d2d1ae544f03fca6c73a34
+        branch: master
     post-install:
       - install -Dm644 -t $FLATPAK_DEST/share/licenses/com.github.wwmm.pulseeffects ../LICENSE.md
       - mkdir -pm755 /app/extensions/Plugins
@@ -326,3 +328,24 @@ modules:
             commit: 90ec41ef659fd82cfec2103e9bb7fc235e9ea66c
         cleanup:
           - /share/doc/rnnoise
+
+      - name: pipewire
+        buildsystem: meson
+        config-opts:
+          - -Dexamples=false
+          - -Dman=false
+          - -Dtests=false
+          - -Dsystemd=false
+          - -Dpipewire-alsa=false
+          - -Dpipewire-jack=false
+          - -Dalsa=false
+          - -Dbluez5=false
+          - -Djack=false
+          - -Dvideoconvert=false
+          - -Dvulkan=false
+          - -Dudev=false
+        sources:
+          - type: git
+            url: https://gitlab.freedesktop.org/pipewire/pipewire.git
+            branch: master
+            commit: 7aabd50d1e3c8ff8777f04e86be55dca2d1d56c7
