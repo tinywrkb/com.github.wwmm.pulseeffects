@@ -347,5 +347,5 @@ modules:
         sources:
           - type: git
             url: https://gitlab.freedesktop.org/pipewire/pipewire.git
-            branch: master
-            commit: 7aabd50d1e3c8ff8777f04e86be55dca2d1d56c7
+            #branch: master
+            commit: 4d15df6f24de272b920355b2c82909faef644f9b
