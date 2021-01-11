@@ -349,3 +349,6 @@ modules:
             url: https://gitlab.freedesktop.org/pipewire/pipewire.git
             #branch: master
             commit: 4d15df6f24de272b920355b2c82909faef644f9b
+        cleanup:
+          - /bin
+          - /etc
